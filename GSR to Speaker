@@ -1,0 +1,24 @@
+int piezoPin =8;
+const int GSR =A0;
+int sensorValue =0;
+int gsr_average =0;
+const int valueMin =0;
+const int valueMax =1032;
+const int newValueMin =250;
+const int newValueMax =360;
+int remapValue(int sensorValue, int valueMin, int valueMax, int newValueMin, newValueMax) {
+    return (newValueMax - newValueMin) * (sensorValue - valueMin) / (valueMax - valueMin) + newValueMin;
+
+}
+
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+    sensorValue = analogRead(GSR);
+    int remappedValue = remapValue(sensorValue, valueMin, valueMax, newValueMin, newValueMax);
+    Serial.println(remappedValue);
+    tone(piezoPin, remappedValue);
+    delay(0);
+}

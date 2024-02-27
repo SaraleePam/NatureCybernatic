@@ -6,7 +6,7 @@ const int valueMin =0;
 const int valueMax =1032;
 const int newValueMin =250;
 const int newValueMax =360;
-int remapValue(int sensorValue, int valueMin, int valueMax, int newValueMin, newValueMax) {
+int remapValue(int sensorValue, int valueMin, int valueMax, int newValueMin, int newValueMax) {
     return (newValueMax - newValueMin) * (sensorValue - valueMin) / (valueMax - valueMin) + newValueMin;
 
 }
